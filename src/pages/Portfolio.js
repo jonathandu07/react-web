@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import Card from "../components/Card";
 
 const Portfolio = () => {
     // on déclare la variable joke et sa méthode (fonction) et en même temps
@@ -31,34 +32,27 @@ const Portfolio = () => {
         })
     }
 
-    useEffect( ()=> loadJoke(),[]);
-    useEffect( () => loadPics(),[]);
+    useEffect( ()=> loadJoke,[]);
+    useEffect( () => loadPics,[]);
 
     return (
       <section>
         <div className="container-fluid">
           <div className="row">
-            <h1>Portfolio</h1>
+            <div className="col"><h1>Portfolio</h1></div>
           </div>
           <div className="row">
-            <button onClick={loadPics}></button>
-            <h2>Card avec image ici</h2>
-            <div className="col-12 col-md-4">
+           
             {gallery.map(
                 pic =>{
-                    return(
-                        <div className="card">
-                <img src={pic.download_url} className="card-img-top" alt={pic.author}/>
-                <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                    <p className="card-text">{joke}</p>
-                    <a href="#" className="btn btn-primary">Go somewhere</a>
-                </div>
-                </div>
-                    )
+                    let source =  `https://picsum.photos/id/${pic.id}/1080/920`;
+                    let id = pic.id;
+                    let author = pic.author;
+                    let chuck = joke;
+                    return (<Card  key={id} source={source} joke={chuck} />)
+                    
                 }
             )}
-            </div>
           </div>
 
           <div className="row">
